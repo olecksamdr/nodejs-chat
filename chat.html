@@ -1,16 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<title>chat</title>
+	
 	<meta charset="UTF-8">
 	
-	<link rel="stylesheet" href="css/vendor/normalize.css">
+	<link rel="stylesheet" href="css/vandor/normalize.css">
 	<link rel="stylesheet" href="css/style.css">
 
-	<title>chat</title>
+	<script src="js/vendor/jquery-3.1.1.min.js"></script>
 </head>
 <body>
 	<div class="chat-window">
-		<div contenteditable="true" class="chat-input">
+		<div contenteditable="true" class="chat-input"> message ... </div>
 	</div>
 </body>
+
+<script>
+	var tmpEl = $('<div class="el1"></div>');
+	
+	$('body').append(tmpEl);
+	$('body').append($('<div>', tmpEl));
+</script>
 </html>
