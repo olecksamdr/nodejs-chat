@@ -1,6 +1,15 @@
 
 // make all elements with class = 'draggable' available for dragging
-export function makeDraggable(elem) {
+// option
+// {
+//  element,
+//  exclude
+// }
+
+export function makeDraggable(options) {
+    var elem = options.element,
+        excludeElem = option.exclude;
+
     var coords, shiftX, shiftY;
 
     if (arguments.length > 0) {
@@ -33,8 +42,8 @@ export function makeDraggable(elem) {
         }
         
         function moveAt(evt) {
-            elem.style.left = evt.pageX  - shiftX + 'px';
-            elem.style.top = evt.pageY  - shiftY + 'px';
+            elem.style.left = evt.pageX - shiftX + 'px';
+            elem.style.top = evt.pageY - shiftY + 'px';
         }
 
         function dragElem(evt) {

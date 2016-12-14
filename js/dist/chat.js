@@ -67,7 +67,16 @@
 	exports.getCoords = getCoords;
 
 	// make all elements with class = 'draggable' available for dragging
-	function makeDraggable(elem) {
+	// option
+	// {
+	//  element,
+	//  exclude
+	// }
+
+	function makeDraggable(options) {
+	    var elem = options.element,
+	        excludeElem = option.exclude;
+
 	    var coords, shiftX, shiftY;
 
 	    if (arguments.length > 0) {
