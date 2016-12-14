@@ -4,7 +4,17 @@ let chatInput = document.querySelector('.send-input');
 // інпуту і після цього знімає обробник події, щоб наступного разу не стирати поідомлення 
 // користувача
 chatInput.addEventListener('focus', clearInputText);
+
+// if user click on send-input he do not drag the winow 
+chatInput.addEventListener('mousedown', stopPropagation);
+
 function clearInputText () {
 	this.innerHTML = '';
 	chatInput.removeEventListener('focus', clearInputText);
 }
+
+
+function stopPropagation (evt) {
+	evt.stopPropagation();
+}
+
