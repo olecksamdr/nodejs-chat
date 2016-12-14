@@ -2,24 +2,21 @@
 <html lang="en">
 <head>
 	<title>chat</title>
-	
+
 	<meta charset="UTF-8">
-	
-	<link rel="stylesheet" href="css/vandor/normalize.css">
+
 	<link rel="stylesheet" href="css/style.css">
 
 	<script src="js/vendor/jquery-3.1.1.min.js"></script>
 </head>
 <body>
-	<div class="chat-window">
-		<div contenteditable="true" class="chat-input"> message ... </div>
+	<div class="container">
+		<section id="chat-window" class="draggable">
+			<div class="send-input" contenteditable="true">
+				Введіть ваше повідомлення ...
+			</div>
+			<button class="send-btn"></button>
+		</section>
 	</div>
 </body>
-
-<script>
-	var tmpEl = $('<div class="el1"></div>');
-	
-	$('body').append(tmpEl);
-	$('body').append($('<div>', tmpEl));
-</script>
 </html>

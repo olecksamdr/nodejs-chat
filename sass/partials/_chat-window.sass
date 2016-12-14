@@ -1,28 +1,65 @@
 @import 'colors';
 
-.chat-window
-	margin: 0 auto;
-	width: 300px;
-	height: 400px;
-	background: $chat-window-bg;
-	// border-radius: 5px;
-	border: 1px solid $chat-window-border-color;
-	position: relative;
+.send-input { padding: 5px;}
 
-.chat-input 
-	overflow-y: scroll;
-	word-wrap: break-word;
-	overflow-wrap: break-word;
-	position: absolute;
-	bottom: 0;
-	background: $chat-input-bg;
-	width: 100%;
-	height: 40px;
-	padding: 10px;
-	border-top: 1px solid $chat-input-border-color;
-	
-	&:focus
-		outline: none;
-		
-	&::-webkit-scrollbar
-    	width: 12px;
+.container
+    width: 1200px;
+    height: auto;
+    margin: 0 auto;
+
+
+#chat-window
+    position: relative;
+    width: 300px;
+    min-height: 400px;
+    background: $chat-window-bg;
+    border: 1px solid $chat-border-color;
+    margin: 100px auto;
+
+.send-input
+    display: inline-block;
+    position: absolute;
+    top: 354px;
+    left: -1px;
+    width: 300px;
+    min-height: 45px;
+    background: #fff;
+    border: none;
+    border-bottom: 1px solid $chat-border-color;
+    border-left: 1px solid $chat-border-color;
+    border-right: 1px solid $chat-border-color;
+    padding-right: 55px;
+    padding-left: 10px;
+    text-align: left;
+    padding-top: 14px;
+    font-size: 0.9em;
+    color: $message-text-color;
+
+.send-input:focus
+    outline: none;
+
+.send-input:focus .send-btn
+    transform: translateX(100px);
+
+.send-btn
+    cursor: pointer;
+    display: inline-block;
+    position: absolute;
+    width: 45px;
+    height: 45px;
+    right: 10px;
+    bottom: 0;
+    border: none;
+    background-color: transparent; /* $chat-border-color */
+    background-image: url(../img/send-message.svg);
+    background-repeat: no-repeat;
+    background-size: 42px 42px;
+    background-position: center;
+    /*border-left: 1px dashed $chat-border-color;*/
+    transition: all .3s;
+
+.send-btn:focus
+    outline: none;
+
+.send-btn:hover
+    transform: scale(1.1);
