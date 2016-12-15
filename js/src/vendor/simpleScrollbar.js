@@ -44,18 +44,20 @@
     
     this.bar = '<div class="ss-scroll">';
 
-    this.wrapper = d.createElement('div');
-    this.wrapper.setAttribute('class', 'ss-wrapper');
+    this.wrapepr = d.querySelector('.ss-wrapper');
+    // this.wrapper = d.createElement('div');
+    // this.wrapper.setAttribute('class', 'ss-wrapper');
 
-    this.el = d.createElement('div');
-    this.el.setAttribute('class', 'ss-content');
+    this.el = d.querySelector('.ss-content');
+    // this.el = d.createElement('div');
+    // this.el.setAttribute('class', 'ss-content');
 
-    this.wrapper.appendChild(this.el);
+    // this.wrapper.appendChild(this.el);
 
-    while (this.target.firstChild) {
-      this.el.appendChild(this.target.firstChild);
-    }
-    this.target.appendChild(this.wrapper);
+    // while (this.target.firstChild) {
+      // this.el.appendChild(this.target.firstChild);
+    // }
+    // this.target.appendChild(this.wrapper);
 
     this.target.insertAdjacentHTML('beforeend', this.bar);
     this.bar = this.target.lastChild;
@@ -88,7 +90,7 @@
           _this.bar.classList.add('ss-hidden')
         } else {
           _this.bar.classList.remove('ss-hidden')
-          _this.bar.style.cssText = 'height:' + (_this.scrollRatio) * 100 + '%; top:' + (_this.el.scrollTop / totalHeight ) * 100 + '%;right:-' + (_this.target.clientWidth - _this.bar.clientWidth) + 'px;';
+          _this.bar.style.cssText = 'height:' + (_this.scrollRatio) * 100 + '%; top:' + (_this.el.scrollTop / totalHeight ) * 100 + '%;left:-' + (_this.bar.clientWidth + 10) + 'px;';
         }
       });
     }

@@ -6,6 +6,7 @@
 	<meta charset="UTF-8">
 
 	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/vendor/simple-scrollbar.css">
 
 	<script src="js/dist/chat.js"></script>
 	<script src="js/src/vendor/simpleScrollbar.js"></script>
@@ -13,8 +14,12 @@
 <body>
 	<div class="container">
 		<section id="chat-window" class="draggable">
-			<div class="send-input" contenteditable="true">
-				Введіть ваше повідомлення ...
+			<div class="send-input" data-simple-scrollbar>
+				<div class="ss-wrapper">
+					<div class="ss-content" contenteditable="true">
+						Введіть ваше повідомлення ...
+					</div>
+				</div>
 			</div>
 			<button class="send-btn"></button>
 		</section>

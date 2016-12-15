@@ -9,7 +9,8 @@ chatInput.addEventListener('focus', clearInputText);
 chatInput.addEventListener('mousedown', stopPropagation);
 
 function clearInputText () {
-	this.innerHTML = '';
+	content = document.querySelector('.ss-content');
+	content.innerHTML = '';
 	chatInput.removeEventListener('focus', clearInputText);
 }
 
@@ -17,4 +18,6 @@ function clearInputText () {
 function stopPropagation (evt) {
 	evt.stopPropagation();
 }
+
+SimpleScrollbar.initEl(chatInput);
 

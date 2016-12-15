@@ -415,6 +415,10 @@ textarea {
   font-family: 'Open Sans', sans-serif;
 }
 
+*[contenteditable]:focus {
+  outline: none;
+}
+
 .send-input {
   padding: 5px;
 }
@@ -435,21 +439,22 @@ textarea {
 }
 
 .send-input {
+  /* overflow: auto; */
   display: inline-block;
   position: absolute;
   top: 354px;
   left: -1px;
   width: 300px;
-  min-height: 45px;
+  height: 45px;
   background: #fff;
   border: none;
   border-bottom: 1px solid #c5c4d6;
   border-left: 1px solid #c5c4d6;
   border-right: 1px solid #c5c4d6;
-  padding-right: 55px;
-  padding-left: 10px;
+  /* padding-right: 55px; */
+  /* padding-left: 10px; */
   text-align: left;
-  padding-top: 14px;
+  /* padding-top: 14px; */
   font-size: 0.9em;
   color: #727679;
 }
