@@ -17,7 +17,7 @@
   box-sizing: border-box;
 }
 
-.ss-content::selection {
+::selection {
   background: #d5d7e8;
 }
 
