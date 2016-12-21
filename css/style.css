@@ -423,10 +423,6 @@ textarea {
   background: #d5d7e8;
 }
 
-.send-input {
-  padding: 5px;
-}
-
 .container {
   width: 1200px;
   height: auto;
@@ -443,20 +439,23 @@ textarea {
 }
 
 .messages-list {
-  overflow-y: auto;
   list-style: none;
   width: 100%;
   height: calc(100% - 45px);
-  padding: 5px 2px;
   margin: 0px;
 }
 
 .messages-list .incoming {
   float: left;
+  margin-left: -8px;
 }
 
 .messages-list .outcoming {
   float: right;
+}
+
+.messages-list .ss-content {
+  padding: 0 0 0 12px;
 }
 
 .message {
@@ -465,7 +464,6 @@ textarea {
   background: #fff;
   margin: 5px;
   box-shadow: 1px 1px 1px #ddd;
-  bottom: 57px;
 }
 
 .message p {
@@ -493,6 +491,11 @@ textarea {
   /* padding-top: 14px; */
   font-size: 0.9em;
   color: #727679;
+}
+
+.send-input .ss-content {
+  padding: 13px 58px 0 12px;
+  word-wrap: break-word;
 }
 
 .send-input:focus {

@@ -48,10 +48,37 @@
 
 	var _utils = __webpack_require__(1);
 
-	window.addEventListener('load', windowLoaded, true);
+	SimpleScrollbar.initAll();
 
-	function windowLoaded() {
-	    (0, _utils.makeDraggable)('chat-window');
+	var chatInput = document.querySelector('.send-input');
+
+	SimpleScrollbar.initEl(chatInput);
+
+	// стирає напис "Введіть ваше повідомлення ..." коли коритувач перший раз клікає по
+	// інпуту і після цього знімає обробник події, щоб наступного разу не стирати поідомлення 
+	// користувача
+	var scrollbarWidth = (0, _utils.getScrollbarWidth)();
+
+	var ssContentWrappers = document.querySelectorAll('.ss-content');
+
+	for (var i = 0; i < ssContentWrappers.length; i++) {
+		ssContentWrappers[i].style.width = 'calc(100% + ' + scrollbarWidth + 'px)';
+	}
+
+	var msgContentWrapper = chatInput.querySelector('.ss-content');
+	msgContentWrapper.setAttribute('contenteditable', 'true');
+	msgContentWrapper.addEventListener('focus', clearInputText);
+
+	// if user click on send-input he do not drag the winow 
+	chatInput.addEventListener('mousedown', stopPropagation);
+
+	function clearInputText() {
+		this.innerHTML = '';
+		this.removeEventListener('focus', clearInputText);
+	}
+
+	function stopPropagation(evt) {
+		evt.stopPropagation();
 	}
 
 /***/ },

@@ -7,8 +7,6 @@
 ::selection
   background: #d5d7e8;
 
-.send-input { padding: 5px;}
-
 .container
     width: 1200px;
     height: auto;
@@ -24,18 +22,20 @@
     margin: 100px auto;
 
 .messages-list
-    overflow-y: auto;
     list-style: none; 
     width: 100%;
     height: calc(100% - #{$send-input-height});
-    padding: 5px 2px;
     margin: 0px;
 
     .incoming
         float: left;
+        margin-left: -8px;
 
     .outcoming
         float: right;
+
+    .ss-content
+        padding: 0 0 0 12px;
 
 .message
     width: 80%;
@@ -43,7 +43,6 @@
     background: $white;
     margin: 5px;
     box-shadow: 1px 1px 1px $message-shadow-color;
-    bottom: 57px;
 
     p
         margin: 0;
@@ -69,6 +68,10 @@
     /* padding-top: 14px; */
     font-size: 0.9em;
     color: #727679;
+
+    .ss-content
+        padding: 13px 58px 0 12px;
+        word-wrap: break-word;
 
 .send-input:focus
     outline: none;

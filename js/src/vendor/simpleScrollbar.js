@@ -44,20 +44,20 @@
     
     this.bar = '<div class="ss-scroll">';
 
-    this.wrapepr = d.querySelector('.ss-wrapper');
-    // this.wrapper = d.createElement('div');
-    // this.wrapper.setAttribute('class', 'ss-wrapper');
+    // this.wrapepr = d.querySelector('.ss-wrapper');
+    this.wrapper = d.createElement('div');
+    this.wrapper.setAttribute('class', 'ss-wrapper');
 
-    this.el = d.querySelector('.ss-content');
-    // this.el = d.createElement('div');
-    // this.el.setAttribute('class', 'ss-content');
+    // this.el = d.querySelector('.ss-content');
+    this.el = d.createElement('div');
+    this.el.setAttribute('class', 'ss-content');
 
-    // this.wrapper.appendChild(this.el);
+    this.wrapper.appendChild(this.el);
 
-    // while (this.target.firstChild) {
-      // this.el.appendChild(this.target.firstChild);
-    // }
-    // this.target.appendChild(this.wrapper);
+    while (this.target.firstChild) {
+      this.el.appendChild(this.target.firstChild);
+    }
+    this.target.appendChild(this.wrapper);
 
     this.target.insertAdjacentHTML('beforeend', this.bar);
     this.bar = this.target.lastChild;
@@ -97,14 +97,14 @@
   }
 
   function initAll() {
-    var nodes = d.querySelectorAll('*[ss-container]');
+    var nodes = d.querySelectorAll('*[data-simple-scrollbar]');
 
     for (var i = 0; i < nodes.length; i++) {
       initEl(nodes[i]);
     }
   }
 
-  d.addEventListener('DOMContentLoaded', initAll);
+  // d.addEventListener('DOMContentLoaded', initAll);
   ss.initEl = initEl;
   ss.initAll = initAll;
 

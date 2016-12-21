@@ -12,7 +12,7 @@
   width: 100%;
   padding: 7px 58px 0 0;
   position: relative;
-  right: -18px;
+  /*right: -18px;*/
   overflow: auto;
   box-sizing: border-box;
 }
