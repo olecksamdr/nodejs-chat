@@ -1,4 +1,5 @@
 @import 'colors';
+@import 'var';
 
 *[contenteditable]:focus
     outline: none;
@@ -17,19 +18,46 @@
 #chat-window
     position: relative;
     width: 300px;
-    min-height: 400px;
+    height: 465px;
     background: $chat-window-bg;
     border: 1px solid $chat-border-color;
     margin: 100px auto;
+
+.messages-list
+    overflow-y: auto;
+    list-style: none; 
+    width: 100%;
+    height: calc(100% - #{$send-input-height});
+    padding: 5px 2px;
+    margin: 0px;
+
+    .incoming
+        float: left;
+
+    .outcoming
+        float: right;
+
+.message
+    width: 80%;
+    border-radius: 3px;
+    background: $white;
+    margin: 5px;
+    box-shadow: 1px 1px 1px $message-shadow-color;
+    bottom: 57px;
+
+    p
+        margin: 0;
+        padding: 7px 10px;
+        color: $message-text-color;
 
 .send-input
     /* overflow: auto; */
     display: inline-block;
     position: absolute;
-    top: 354px;
+    bottom: -1px;
     left: -1px;
     width: 300px;
-    height: 45px;
+    height: $send-input-height;
     background: #fff;
     border: none;
     border-bottom: 1px solid #c5c4d6;
@@ -56,7 +84,7 @@
     width: 45px;
     height: 45px;
     right: 10px;
-    bottom: 0;
+    bottom: 0px;
     border: none;
     background-color: transparent; /* $chat-border-color */
     background-image: url(../img/send-message.svg);

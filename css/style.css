@@ -419,6 +419,10 @@ textarea {
   outline: none;
 }
 
+::selection {
+  background: #d5d7e8;
+}
+
 .send-input {
   padding: 5px;
 }
@@ -432,17 +436,49 @@ textarea {
 #chat-window {
   position: relative;
   width: 300px;
-  min-height: 400px;
+  height: 465px;
   background: #eff1ff;
   border: 1px solid #c5c4d6;
   margin: 100px auto;
+}
+
+.messages-list {
+  overflow-y: auto;
+  list-style: none;
+  width: 100%;
+  height: calc(100% - 45px);
+  padding: 5px 2px;
+  margin: 0px;
+}
+
+.messages-list .incoming {
+  float: left;
+}
+
+.messages-list .outcoming {
+  float: right;
+}
+
+.message {
+  width: 80%;
+  border-radius: 3px;
+  background: #fff;
+  margin: 5px;
+  box-shadow: 1px 1px 1px #ddd;
+  bottom: 57px;
+}
+
+.message p {
+  margin: 0;
+  padding: 7px 10px;
+  color: #727679;
 }
 
 .send-input {
   /* overflow: auto; */
   display: inline-block;
   position: absolute;
-  top: 354px;
+  bottom: -1px;
   left: -1px;
   width: 300px;
   height: 45px;
@@ -471,10 +507,11 @@ textarea {
   cursor: pointer;
   display: inline-block;
   position: absolute;
+  z-index: 99999;
   width: 45px;
   height: 45px;
   right: 10px;
-  bottom: 0;
+  bottom: 0px;
   border: none;
   background-color: transparent;
   /* $chat-border-color */
