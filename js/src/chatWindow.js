@@ -34,5 +34,32 @@ function stopPropagation (evt) {
 	evt.stopPropagation();
 }
 
+msgContentWrapper.addEventListener('keydown', userKeyDown);
+
+console.log(msgContentWrapper);
+
+function userKeyDown(evt) {
+	if (evt.which == 13 )
+		sendMessage();
+}
+
+var messageList = document.querySelector('.messages-list .ss-content');
+
+function sendMessage() {
+	var msgContent = document.createTextNode(msgContentWrapper.textContent);
+
+	msgContentWrapper.innerHTML = '';
+
+	var msgDiv = document.createElement('div');
+	var p = document.createElement('p');
+
+	msgDiv.classList.add('message');
+	msgDiv.classList.add('outcoming');
+	p.appendChild(msgContent);
+	msgDiv.appendChild(p);
+
+	messageList.appendChild(msgDiv);
+}
+
 
 
