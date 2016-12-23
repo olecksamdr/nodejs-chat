@@ -51,7 +51,10 @@
 	window.addEventListener('load', windowLoaded, true);
 
 	function windowLoaded() {
-	    (0, _utils.makeDraggable)('chat-window');
+		(0, _utils.makeDraggable)({
+			element: document.getElementById('chat-window'),
+			control: document.querySelector('#chat-window .drag-control')
+		});
 	}
 
 /***/ },
@@ -68,55 +71,62 @@
 	exports.getScrollbarWidth = getScrollbarWidth;
 
 	// make all elements with class = 'draggable' available for dragging
-	function makeDraggable(elem) {
-	    var coords, shiftX, shiftY;
+	// {control: 'controlElement', element: 'elementNeddToDrag'}
+	function makeDraggable(options) {
+	    var coords,
+	        shiftX,
+	        shiftY,
+	        elem = options.element,
+	        control = options.control;
 
-	    if (arguments.length > 0) {
-	        (function () {
-	            var elemMouseDown = function elemMouseDown(evt) {
-	                coords = getCoords(elem);
-	                shiftX = evt.pageX - coords.left;
-	                shiftY = evt.pageY - coords.top;
+	    // if (arguments.length > 0) {
+	    //     if (typeof elem === 'string') {
+	    //         elem = document.getElementById(elem);
+	    //     } 
 
-	                this.style.position = 'absolute';
-	                this.style.zIndex = '1000';
-	                this.style.margin = '0';
+	    control.ondragstart = function () {
+	        return false;
+	    };
 
-	                moveAt(evt);
-	                // поміщаємо наш елемент в body щоб він позиціонувався відносно вікна
-	                document.body.appendChild(this);
+	    control.addEventListener('mousedown', elemMouseDown, false);
 
-	                document.addEventListener('mousemove', dragElem, false);
-	                elem.addEventListener('mouseup', elemMouseUp, false);
-	            };
+	    function elemMouseDown(evt) {
+	        coords = getCoords(elem);
+	        shiftX = Math.abs(evt.pageX - coords.left);
+	        shiftY = Math.abs(evt.pageY - coords.top);
 
-	            var moveAt = function moveAt(evt) {
-	                elem.style.left = evt.pageX - shiftX + 'px';
-	                elem.style.top = evt.pageY - shiftY + 'px';
-	            };
+	        elem.style.position = 'absolute';
+	        elem.style.zIndex = '1000';
+	        elem.style.margin = '0';
 
-	            var dragElem = function dragElem(evt) {
-	                moveAt(evt);
-	            };
+	        moveAt(evt);
+	        // поміщаємо наш елемент в body щоб він позиціонувався відносно вікна
+	        document.body.appendChild(elem);
 
-	            var elemMouseUp = function elemMouseUp() {
-	                document.removeEventListener('mousemove', dragElem);
-	                elem.removeEventListener('mouseup', elemMouseUp);
-	            };
-
-	            if (typeof elem === 'string') {
-	                elem = document.getElementById(elem);
-	            }
-
-	            elem.ondragstart = function () {
-	                return false;
-	            };
-
-	            elem.addEventListener('mousedown', elemMouseDown, false);
-	        })();
-	    } else {
-	        throw new Error('function must have an argument');
+	        document.addEventListener('mousemove', dragElem, false);
+	        control.addEventListener('mouseup', elemMouseUp, false);
 	    }
+
+	    function moveAt(evt) {
+	        console.log(evt.pageX);
+	        console.log(evt.pageY);
+
+	        elem.style.left = evt.pageX + shiftX + 'px';
+	        elem.style.top = evt.pageY - shiftY + 'px';
+	    }
+
+	    function dragElem(evt) {
+	        moveAt(evt);
+	    }
+
+	    function elemMouseUp() {
+	        document.removeEventListener('mousemove', dragElem);
+	        elem.removeEventListener('mouseup', elemMouseUp);
+	    }
+
+	    // } else {
+	    //     throw new Error('function must have an argument');
+	    // }
 	}
 
 	function getCoords(elem) {

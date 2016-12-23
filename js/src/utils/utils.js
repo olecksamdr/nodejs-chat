@@ -1,40 +1,46 @@
 
 // make all elements with class = 'draggable' available for dragging
-export function makeDraggable(elem) {
-    var coords, shiftX, shiftY;
+// {control: 'controlElement', element: 'elementNeddToDrag'}
+export function makeDraggable(options) {
+    var coords, shiftX, shiftY,
+        elem = options.element,
+        control = options.control;
 
-    if (arguments.length > 0) {
-        if (typeof elem === 'string') {
-            elem = document.getElementById(elem);
-        } 
+    // if (arguments.length > 0) {
+    //     if (typeof elem === 'string') {
+    //         elem = document.getElementById(elem);
+    //     } 
        
-        elem.ondragstart = function() {
+        control.ondragstart = function() {
             return false;
         };
 
-        elem.addEventListener('mousedown', elemMouseDown, false);
+        control.addEventListener('mousedown', elemMouseDown, false);
 
         function elemMouseDown(evt) {
             coords = getCoords(elem);
-            shiftX = evt.pageX - coords.left;
-            shiftY = evt.pageY - coords.top;
+            shiftX = Math.abs(evt.pageX - coords.left);
+            shiftY = Math.abs(evt.pageY - coords.top);
 
-            this.style.position = 'absolute';
-            this.style.zIndex = '1000';
-            this.style.margin = '0';
+            elem.style.position = 'absolute';
+            elem.style.zIndex = '1000';
+            elem.style.margin = '0';
 
             moveAt(evt);
             // поміщаємо наш елемент в body щоб він позиціонувався відносно вікна
-            document.body.appendChild(this);
+            document.body.appendChild(elem);
             
 
             document.addEventListener('mousemove', dragElem, false);
-            elem.addEventListener('mouseup', elemMouseUp, false);
+            control.addEventListener('mouseup', elemMouseUp, false);
         }
         
         function moveAt(evt) {
-            elem.style.left = evt.pageX  - shiftX + 'px';
-            elem.style.top = evt.pageY  - shiftY + 'px';
+            console.log(evt.pageX);
+            console.log(evt.pageY);
+
+            elem.style.left = evt.pageX + shiftX + 'px';
+            elem.style.top = evt.pageY - shiftY + 'px';
         }
 
         function dragElem(evt) {
@@ -46,9 +52,9 @@ export function makeDraggable(elem) {
                 elem.removeEventListener('mouseup', elemMouseUp);
         }
 
-    } else {
-        throw new Error('function must have an argument');
-    }
+    // } else {
+    //     throw new Error('function must have an argument');
+    // }
 }
 
 export function getCoords(elem) {

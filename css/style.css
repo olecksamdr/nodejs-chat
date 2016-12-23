@@ -438,6 +438,32 @@ textarea {
   margin: 100px auto;
 }
 
+.drag-control {
+  display: block;
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  left: -50px;
+  top: 10px;
+  background-image: url("../img/move.svg");
+  background-repeat: no-repeat;
+  background-size: 50%;
+  background-position: right;
+  cursor: pointer;
+  opacity: 1;
+  transition: all .3s ease;
+}
+
+.drag-control:hover {
+  width: 35px;
+  height: 35px;
+  background-size: 100%;
+  border-radius: 0;
+  left: -50px;
+  background-color: transparent;
+  background-position: center;
+}
+
 .messages-list {
   list-style: none;
   width: 100%;
@@ -482,9 +508,7 @@ textarea {
   height: 45px;
   background: #fff;
   border: none;
-  border-bottom: 1px solid #c5c4d6;
-  border-left: 1px solid #c5c4d6;
-  border-right: 1px solid #c5c4d6;
+  border: 1px solid #c5c4d6;
   /* padding-right: 55px; */
   /* padding-left: 10px; */
   text-align: left;
@@ -494,7 +518,7 @@ textarea {
 }
 
 .send-input .ss-content {
-  padding: 13px 58px 0 12px;
+  padding: 13px 58px 5px 12px;
   word-wrap: break-word;
 }
 
