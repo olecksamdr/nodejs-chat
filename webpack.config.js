@@ -1,14 +1,24 @@
-var path = require('path');
+const NODE_ENV = process.env.NODE_ENV || 'development';
+
+let
+	webpack = require('webpack'),
+	path = require('path');
 
 module.exports = {
+	context: path.join(__dirname, 'src', 'js'),
+
 	entry: {
-		chat: "./js/src/main.js",
-		chatWindow: "./js/src/chatWindow.js"
+		chat: "./main.js",
+		chatWindow: "./chatWindow.js",
+		simpleScrollbar: "./vendor/simpleScrollbar.js"
 	},
 	output: {
-		path: path.join(__dirname, 'js', 'dist'),
+		path: path.join(__dirname, 'dist', 'js'),
 		filename: "[name].js"
 	},
+
+	plugins: [],
+
 	module: {
 		loaders: [
 			{
@@ -22,6 +32,16 @@ module.exports = {
 			}
 		]
 	},
-	devtool: 'cheap-inline-module-source-map',
-	watch: true
+	devtool: (NODE_ENV == 'development') ? 'cheap-inline-module-source-map' : false,
+	watch: NODE_ENV == 'development'
+}
+
+if (NODE_ENV == 'production') {
+	module.exports.plugins.push(
+			new webpack.optimize.UglifyJsPlugin({
+				warnings: false,
+				drop_console: true,
+				unsafe: true
+			})
+		);
 }

@@ -30,8 +30,6 @@ function clearInputText () {
 
 msgContentWrapper.addEventListener('keydown', userKeyDown);
 
-console.log(msgContentWrapper);
-
 function userKeyDown(evt) {
 	if (evt.which == 13) // enter key pressed
 		sendMessage();

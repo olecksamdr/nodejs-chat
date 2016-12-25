@@ -7,9 +7,9 @@ var sassOtions = {
 };
 
 gulp.task('sass', () => {
-	gulp.src('sass/**/*.sass')
+	gulp.src('./src/sass/**/*.sass')
 		.pipe(sass(sassOtions).on('error', sass.logError))
-		.pipe(gulp.dest('./css/'));
+		.pipe(gulp.dest('./dist/css/'));
 });
 
 gulp.task('default', () => {
