@@ -1,8 +1,10 @@
 import { getScrollbarWidth } from './utils/utils.js';
+import { smothScroll } from './utils/scroll.js';
 
 SimpleScrollbar.initAll();
 
 let chatInput = document.querySelector('.send-input');
+let msgListScrollCnt = document.querySelector('.messages-list .ss-content');
 
 SimpleScrollbar.initEl(chatInput);
 
@@ -59,6 +61,9 @@ function sendMessage() {
 	msgDiv.appendChild(p);
 
 	messageList.appendChild(msgDiv);
+
+	let scrollTo = msgListScrollCnt.scrollTop + msgListScrollCnt.scrollHeight - msgListScrollCnt.clientHeight;
+	smothScroll(msgListScrollCnt, scrollTo);
 }
 
 

@@ -36,9 +36,6 @@ export function makeDraggable(options) {
         }
         
         function moveAt(evt) {
-            console.log(evt.pageX);
-            console.log(evt.pageY);
-
             elem.style.left = evt.pageX + shiftX + 'px';
             elem.style.top = evt.pageY - shiftY + 'px';
         }
