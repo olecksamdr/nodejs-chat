@@ -3,14 +3,7 @@ import { smothScroll } from './utils/scroll.js';
 
 SimpleScrollbar.initAll();
 
-let chatInput = document.querySelector('.send-input');
-let msgListScrollCnt = document.querySelector('.messages-list .ss-content');
 
-SimpleScrollbar.initEl(chatInput);
-
-// стирає напис "Введіть ваше повідомлення ..." коли коритувач перший раз клікає по
-// інпуту і після цього знімає обробник події, щоб наступного разу не стирати поідомлення 
-// користувача
 let scrollbarWidth = getScrollbarWidth();
 
 let ssContentWrappers = document.querySelectorAll('.ss-content');
@@ -19,21 +12,20 @@ for (let i = 0; i < ssContentWrappers.length; i++) {
 	ssContentWrappers[i].style.width = 'calc(100% + '+ scrollbarWidth + 'px)';
 }
 
-let msgContentWrapper = chatInput.querySelector('.ss-content');
+// elements
+let chatInput = document.querySelector('.send-input'),
+	msgListScrollCnt = document.querySelector('.messages-list .ss-content'),
+	msgContentWrapper = chatInput.querySelector('.ss-content');
+
 msgContentWrapper.setAttribute('contenteditable', 'true');
 msgContentWrapper.addEventListener('focus', clearInputText);
 
-// if user click on send-input he do not drag the winow 
-chatInput.addEventListener('mousedown', stopPropagation);
-
+// стирає напис "Введіть ваше повідомлення ..." коли коритувач перший раз клікає по
+// інпуту і після цього знімає обробник події, щоб наступного разу не стирати поідомлення 
+// користувача
 function clearInputText () {
 	this.innerHTML = '';
 	this.removeEventListener('focus', clearInputText);
-}
-
-
-function stopPropagation (evt) {
-	evt.stopPropagation();
 }
 
 msgContentWrapper.addEventListener('keydown', userKeyDown);
@@ -41,7 +33,7 @@ msgContentWrapper.addEventListener('keydown', userKeyDown);
 console.log(msgContentWrapper);
 
 function userKeyDown(evt) {
-	if (evt.which == 13 )
+	if (evt.which == 13) // enter key pressed
 		sendMessage();
 }
 
