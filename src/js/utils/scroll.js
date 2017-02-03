@@ -1,4 +1,5 @@
-import { animate, circ } from './animation.js';
+import animate from './animate.js';
+import circ from './timingFunctions/circ.js';
 
 export function smothScroll(el, scrollTo) {
 	animate({

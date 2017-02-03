@@ -1,5 +1,5 @@
-import { getScrollbarWidth } from './utils/utils.js';
-import { smothScroll } from './utils/scroll.js';
+import  getScrollbarWidth from './utils/getScrollbarWidth.js';
+import smothScroll from './utils/scroll.js';
 
 SimpleScrollbar.initAll();
 

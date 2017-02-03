@@ -1,7 +1,9 @@
+import getCoords from './getCoords.js';
 
 // make all elements with class = 'draggable' available for dragging
 // {control: 'controlElement', element: 'elementNeddToDrag'}
-export function makeDraggable(options) {
+
+export default function makeDraggable(options) {
     var coords, shiftX, shiftY,
         elem = options.element,
         control = options.control;
@@ -18,6 +20,10 @@ export function makeDraggable(options) {
         control.addEventListener('mousedown', elemMouseDown, false);
 
         function elemMouseDown(evt) {
+
+            // для того щоб не виділявся текст при перетягуванні елемента
+            evt.preventDefault();
+
             coords = getCoords(elem);
             shiftX = Math.abs(evt.pageX - coords.left);
             shiftY = Math.abs(evt.pageY - coords.top);
@@ -33,6 +39,7 @@ export function makeDraggable(options) {
 
             document.addEventListener('mousemove', dragElem, false);
             control.addEventListener('mouseup', elemMouseUp, false);
+
         }
         
         function moveAt(evt) {
@@ -54,42 +61,3 @@ export function makeDraggable(options) {
     // }
 }
 
-export function getCoords(elem) {
-  var box = elem.getBoundingClientRect();
-
-  var scrollTop = window.pageYOffset;
-  var scrollLeft = window.pageXOffset;
-
-  var top = box.top + scrollTop;
-  var left = box.left + scrollLeft;
-
-  return {
-    top: top,
-    left: left
-  };
-}
-
-export function getScrollbarWidth() {
-    var outer = document.createElement("div");
-    outer.style.position = "absolute";
-    outer.style.top = "-1000px";
-    outer.style.visibility = "hidden";
-    outer.style.width = "100px";
-    document.body.appendChild(outer);
-    
-    var widthNoScroll = outer.offsetWidth;
-    // force scrollbars
-    outer.style.overflow = "scroll";
-    
-    // add innerdiv
-    var inner = document.createElement("div");
-    inner.style.width = "100%";
-    outer.appendChild(inner);        
-    
-    var widthWithScroll = inner.offsetWidth;
-    
-    // remove divs
-    outer.parentNode.removeChild(outer);
-    
-    return widthNoScroll - widthWithScroll;
-}

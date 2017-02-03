@@ -1,4 +1,4 @@
-import { makeDraggable } from './utils/utils.js';
+import makeDraggable from './utils/makeDraggable.js';
 
 window.addEventListener('load', windowLoaded, true);
 
