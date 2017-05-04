@@ -19,19 +19,19 @@ module.exports = {
 
 	plugins: [],
 
-	module: {
-		loaders: [
-			{
-				test: /\.js$/,
-				exclude: /(node_modules|bower_components)/,
-				loader: 'babel-loader',
-				query: {
-					presets: ['es2015'],
-					plugins: ['transform-runtime']
-				}
-			}
-		]
-	},
+	// module: {
+	// 	loaders: [
+	// 		{
+	// 			test: /\.js$/,
+	// 			exclude: /(node_modules|bower_components)/,
+	// 			loader: 'babel-loader',
+	// 			query: {
+	// 				presets: ['es2015'],
+	// 				plugins: ['transform-runtime']
+	// 			}
+	// 		}
+	// 	]
+	// },
 	devtool: (NODE_ENV == 'development') ? 'cheap-inline-module-source-map' : false,
 	watch: NODE_ENV == 'development'
 }
